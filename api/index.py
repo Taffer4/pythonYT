@@ -1,19 +1,9 @@
 from http.server import BaseHTTPRequestHandler
 from cowpy import cow
 
-class handler (BaseHTTPRequestHandler):
-
-  def do_GET(self):
-    self.send_response(200)
-    self.send_header('content-type', 'text-plain')
-    self.end_headers()
-    message = cow.Cowacter().milk('Hello from Python')
-    self.wfile.write(message.encode())
-    reutrn
-
 import os
 
-import google_auth_oauthlib.flow
+from google_auth_oauthlib.flow import Flow
 import googleapiclient.discovery
 import googleapiclient.errors
 
