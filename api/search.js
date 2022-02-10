@@ -13,7 +13,7 @@
               function(err) { console.error("Error signing in", err); });
   }
   function loadClient() {
-    gapi.client.setApiKey("YOUR_API_KEY");
+    gapi.client.setApiKey("AIzaSyCw36olQLlK9JBS0ULYrn3k0DRcB6uIM8c");
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
