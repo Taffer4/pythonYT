@@ -1,21 +1,11 @@
 from http.server import BaseHTTPRequestHandler
 from cowpy import cow
 
-class handler (BaseHTTPRequestHandler):
+import os
 
-  def do_GET(self):
-    self.send_response(200)
-    self.send_header('content-type', 'text-plain')
-    self.end_headers()
-    message = cow.Cowacter().milk('Hello from Python')
-    self.wfile.write(message.encode())
-    reutrn
-
-from cowpy import os
-
-from cowpy import google_auth_oauthlib.flow
-from cowpy import googleapiclient.discovery
-from cowpy import googleapiclient.errors
+from google_auth_oauthlib.flow import Flow
+import googleapiclient.discovery
+import googleapiclient.errors
 
 scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
 
