@@ -83,4 +83,5 @@ def GetVideosList():
         videos_pack = getVideosDataFromYT(videos_pack[key])
         printVideosList(videos_pack['items'])
 
-GetVideosList()
+if __name__ == "__main__":
+    GetVideosList()
