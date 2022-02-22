@@ -85,4 +85,4 @@ def GetVideosList():
 
 if __name__ == "__main__":
     app.run(debug=True)
-    GetVideosList()
+    GetVideosList(None)
