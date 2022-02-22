@@ -27,7 +27,7 @@ def GetVideosList():
     titles = []
 
     for i in pack_items:
-        ids.append(i['id']['videoId'])
+        dateUploaded.append(i['snippet']['publishedAt'])
         titles.append(i['snippet']['title'])
 
     key = 'nextPageToken'
