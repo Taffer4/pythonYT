@@ -20,6 +20,7 @@ app = Flask(__name__)
 @app.route('/')
 
 def getVideos():
+    #Setting YouTube API
     api_key = "AIzaSyDReRsRej0OfdaOUOfq5z_PHvqqKepIDLU"
     api_service_name = "youtube"
     api_version = "v3"
@@ -30,9 +31,10 @@ def getVideos():
     	channelId="UCppy4jafHu51iCMl-7qVbFA",
     	type="video",
     	maxResults=50,
-        order='videoCount'
+        order='date'
     )
 
+    #Requesting data from YT
     json_data = request.execute()
     dumped_json = json.dumps(json_data)
     user = User(datetime.today(), json_data)
