@@ -9,11 +9,12 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	json_data = db.Column(db.JSON, nullable=False)
+	date_time = db.Column(db.DateTime)
+	json_data = db.Column(db.JSON)
 
-	def __init__(self, id, json_data):
-		self.id = id
-		self.json_data = json_data
+	def __init__(self, date_time, json_data):
+	    self.date_time = date_time
+	    self.json_data = json_data
 
 	def __repr__(self):
 		return 'json_data %s' % self.json_data
