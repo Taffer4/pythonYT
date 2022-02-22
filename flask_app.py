@@ -19,6 +19,17 @@ app = Flask(__name__)
 
 @app.route('/')
 
+def GetVideosList():
+    videos_pack_list = []
+    videos_pack = (getVideosDataFromYT(None))
+    printVideosList(videos_pack['items'])
+
+    #key = 'nextPageToken'
+
+    #while(videos_pack.get(key) is not None):
+        #videos_pack = getVideosDataFromYT(videos_pack[key])
+        #printVideosList(videos_pack['items'])
+
 def getVideosDataFromYT(nextPageToken):
     #Setting YouTube API
     api_key = "AIzaSyDMB9HjFDT7B-js9iZO3FHbSSqX7mOtOQ4"
@@ -72,17 +83,6 @@ def printVideosList(videos_list):
 
     return render_template('test.html', len = len(ids), video_ids = ids, vid_titles = titles)
 
-def GetVideosList():
-    videos_pack_list = []
-    videos_pack = (getVideosDataFromYT(None))
-    printVideosList(videos_pack['items'])
-
-    #key = 'nextPageToken'
-
-    #while(videos_pack.get(key) is not None):
-        #videos_pack = getVideosDataFromYT(videos_pack[key])
-        #printVideosList(videos_pack['items'])
-
 if __name__ == "__main__":
     app.run(debug=True)
-    GetVideosList(None)
+    GetVideosList()
