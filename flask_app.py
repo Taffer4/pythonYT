@@ -21,7 +21,7 @@ app = Flask(__name__)
 
 def getVideosDataFromYT(nextPageToken):
     #Setting YouTube API
-    api_key = "AIzaSyASLGLshTfMXlHoTKG9VpPg6esWJb-q15I"
+    api_key = "AIzaSyDMB9HjFDT7B-js9iZO3FHbSSqX7mOtOQ4"
     api_service_name = "youtube"
     api_version = "v3"
 
@@ -49,7 +49,6 @@ def getVideosDataFromYT(nextPageToken):
     #Requesting data from YT
     json_data = request.execute()
     return json_data
-    #dumped_json = json.dumps(json_data)
     #user = User(datetime.today(), json_data)
 
     #Database stuff
@@ -68,22 +67,20 @@ def printVideosList(videos_list):
     titles = []
 
     for i in videos_list:
-        ids.append(i['items']['id']['videoId'])
-        titles.append(i['items']['snippet']['title'])
-    
+        ids.append(i['id']['videoId'])
+        titles.append(i['snippet']['title'])
+
     return render_template('test.html', len = len(ids), video_ids = ids, vid_titles = titles)
 
 def GetVideosList():
     videos_pack_list = []
     videos_pack = (getVideosDataFromYT(None))
-    videos_pack_list.append(videos_pack)
+    printVideosList(videos_pack['items'])
 
     key = 'nextPageToken'
 
     while(videos_pack.get(key) is not None):
         videos_pack = getVideosDataFromYT(videos_pack[key])
-        videos_pack_list.append(videos_pack)
-
-    printVideosList(videos_pack_list)
+        printVideosList(videos_pack['items'])
 
 GetVideosList()
