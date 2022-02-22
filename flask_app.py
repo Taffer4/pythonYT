@@ -81,3 +81,5 @@ def GetVideosList():
     while(videos.get(key) is not None):
         videos.update(getVideosDataFromYT(videos['nextPageToken']))
         printVideosList(videos)
+
+GetVideosList()
