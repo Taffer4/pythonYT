@@ -23,7 +23,7 @@ def GetVideosList():
     videos_pack = (getVideosDataFromYT(None))
     pack_items = videos_pack['items']
 
-    ids = []
+    dateUploaded = []
     titles = []
 
     for i in pack_items:
@@ -36,10 +36,10 @@ def GetVideosList():
         videos_pack = getVideosDataFromYT(videos_pack[key])
         pack_items = videos_pack['items']
         for i in pack_items:
-            ids.append(i['id']['videoId'])
+            dateUploaded.append(i['snippet']['publishedAt'])
             titles.append(i['snippet']['title'])
 
-    return render_template('test.html', len = len(ids), video_ids = ids, vid_titles = titles)
+    return render_template('test.html', len = len(ids), publushTime = dateUploaded, vid_titles = titles)
 
 def getVideosDataFromYT(nextPageToken):
     #Setting YouTube API
