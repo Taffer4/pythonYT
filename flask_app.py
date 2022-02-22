@@ -70,7 +70,8 @@ def printVideosList(videos_list):
     for i in videos_list:
         ids.append(i['items']['id']['videoId'])
         titles.append(i['items']['snippet']['title'])
-        return render_template('test.html', len = len(ids), video_ids = ids, vid_titles = titles)
+    
+    return render_template('test.html', len = len(ids), video_ids = ids, vid_titles = titles)
 
 def GetVideosList():
     videos_pack_list = []
