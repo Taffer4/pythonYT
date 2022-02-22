@@ -77,11 +77,12 @@ def GetVideosList():
     videos_pack = (getVideosDataFromYT(None))
     printVideosList(videos_pack['items'])
 
-    key = 'nextPageToken'
+    #key = 'nextPageToken'
 
-    while(videos_pack.get(key) is not None):
-        videos_pack = getVideosDataFromYT(videos_pack[key])
-        printVideosList(videos_pack['items'])
+    #while(videos_pack.get(key) is not None):
+        #videos_pack = getVideosDataFromYT(videos_pack[key])
+        #printVideosList(videos_pack['items'])
 
 if __name__ == "__main__":
+    app.run(debug=True)
     GetVideosList()
