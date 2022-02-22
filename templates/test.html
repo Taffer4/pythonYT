@@ -1,0 +1,26 @@
+<!doctype html>
+
+<html>
+<title>Список 50 топ роликов на канале Влад и Никита</title>
+
+
+<body>
+
+<table style="margin-left: 20px;">
+<!-- Table heades -->
+	<th>
+		<tr style="color: green; ">
+			<td>Video ID</td>
+			<td>Title</td>
+		</tr>
+	</th>
+</table>
+
+	<!-- For loop logic -->
+	{%for i in range(0, len)%}
+		<li>ID: {{video_ids[i]}} Title: {{vid_titles[i]}}</li>
+	{%endfor%}
+
+
+</body>
+</html>
