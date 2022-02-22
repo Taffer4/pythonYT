@@ -20,15 +20,27 @@ app = Flask(__name__)
 @app.route('/')
 
 def GetVideosList():
-    videos_pack_list = []
     videos_pack = (getVideosDataFromYT(None))
-    printVideosList(videos_pack['items'])
+    pack_items = videos_pack['items']
 
-    #key = 'nextPageToken'
+    ids = []
+    titles = []
 
-    #while(videos_pack.get(key) is not None):
-        #videos_pack = getVideosDataFromYT(videos_pack[key])
-        #printVideosList(videos_pack['items'])
+    for i in pack_items:
+        ids.append(i['id']['videoId'])
+        titles.append(i['snippet']['title'])
+
+    key = 'nextPageToken'
+
+    while(videos_pack.get(key) is not None):
+        videos_pack = getVideosDataFromYT(videos_pack[key])
+        pack_items = videos_pack['items']:
+
+        for i in pack_items:
+            ids.append(i['id']['videoId'])
+            titles.append(i['snippet']['title'])
+
+    return render_template('test.html', len = len(ids), video_ids = ids, vid_titles = titles)
 
 def getVideosDataFromYT(nextPageToken):
     #Setting YouTube API
@@ -73,16 +85,6 @@ def getVideosDataFromYT(nextPageToken):
     #session.add(user)
     #session.commit()
 
-def printVideosList(videos_list):
-    ids = []
-    titles = []
-
-    for i in videos_list:
-        ids.append(i['id']['videoId'])
-        titles.append(i['snippet']['title'])
-
-    return render_template('test.html', len = len(ids), video_ids = ids, vid_titles = titles)
 
 if __name__ == "__main__":
     app.run(debug=True)
-    GetVideosList()
