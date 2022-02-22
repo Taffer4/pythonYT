@@ -62,9 +62,6 @@ def getVideosDataFromYT(nextPageToken):
     #session.add(user)
     #session.commit()
 
-    videos_list = json_data['items']
-    return json_data
-
 def printVideosList(videos_list):
     ids = []
     titles = []
@@ -80,6 +77,8 @@ def GetVideosList():
 
     while(videos.get(key) is not None):
         videos.update(getVideosDataFromYT(videos['nextPageToken']))
-        printVideosList(videos)
+
+    videos_list = videos['items']
+    print(videos_list)
 
 GetVideosList()
