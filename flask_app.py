@@ -35,7 +35,6 @@ def GetVideosList():
     while(videos_pack.get(key) is not None):
         videos_pack = getVideosDataFromYT(videos_pack[key])
         pack_items = videos_pack['items']:
-
         for i in pack_items:
             ids.append(i['id']['videoId'])
             titles.append(i['snippet']['title'])
