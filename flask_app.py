@@ -25,10 +25,13 @@ def GetVideosList():
 
     dateUploaded = []
     titles = []
+    view_count = []
 
     for i in pack_items:
         dateUploaded.append(i['snippet']['publishedAt'])
         titles.append(i['snippet']['title'])
+        video_stats = getVideosStats(i['id']['videoId'])
+        view_count.append(video_stats)
 
     key = 'nextPageToken'
 
@@ -38,12 +41,14 @@ def GetVideosList():
         for i in pack_items:
             dateUploaded.append(i['snippet']['publishedAt'])
             titles.append(i['snippet']['title'])
+            video_stats = getVideosStats(i['id']['videoId'])
+            view_count.append(video_stats)
 
-    return render_template('test.html', len = len(ids), publushTime = dateUploaded, vid_titles = titles)
+    return render_template('test.html', len = len(titles), publushTime = dateUploaded, vid_titles = titles, viewCount = view_count)
 
 def getVideosDataFromYT(nextPageToken):
     #Setting YouTube API
-    api_key = "AIzaSyDMB9HjFDT7B-js9iZO3FHbSSqX7mOtOQ4"
+    api_key = "AIzaSyAd8FR7xkoUK2UE0VsVK9TQCwakDBFFnhM"
     api_service_name = "youtube"
     api_version = "v3"
 
@@ -84,6 +89,28 @@ def getVideosDataFromYT(nextPageToken):
     #session.add(user)
     #session.commit()
 
+def getVideosStats(video_id):
+    #Setting YouTube API
+    api_key = "AIzaSyAd8FR7xkoUK2UE0VsVK9TQCwakDBFFnhM"
+    api_service_name = "youtube"
+    api_version = "v3"
+
+    client = build(api_service_name, api_version, developerKey=api_key)
+
+    request = client.videos().list(
+        part ='statistics',
+        id = video_id
+    )
+
+    video_stats = request.execute()
+
+    viewCount = []
+
+    for i in video_stats["items"]:
+        b = i["statistics"]
+        viewCount.append(b["viewCount"])
+
+    return viewCount
 
 if __name__ == "__main__":
     app.run(debug=True)
