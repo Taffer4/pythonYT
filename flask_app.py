@@ -48,7 +48,7 @@ def GetVideosList():
 
 def getVideosDataFromYT(nextPageToken):
     #Setting YouTube API
-    api_key = "AIzaSyAd8FR7xkoUK2UE0VsVK9TQCwakDBFFnhM"
+    api_key = "AIzaSyCYo9aXUh-cJTe2jbYiSQbgoxLey-Ac_2c"
     api_service_name = "youtube"
     api_version = "v3"
 
@@ -91,7 +91,7 @@ def getVideosDataFromYT(nextPageToken):
 
 def getVideosStats(video_id):
     #Setting YouTube API
-    api_key = "AIzaSyAd8FR7xkoUK2UE0VsVK9TQCwakDBFFnhM"
+    api_key = "AIzaSyCYo9aXUh-cJTe2jbYiSQbgoxLey-Ac_2c"
     api_service_name = "youtube"
     api_version = "v3"
 
