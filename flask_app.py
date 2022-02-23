@@ -14,6 +14,9 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
 scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
+api_key = "AIzaSyDReRsRej0OfdaOUOfq5z_PHvqqKepIDLU"
+api_service_name = "youtube"
+api_version = "v3"
 
 app = Flask(__name__)
 
@@ -48,9 +51,6 @@ def GetVideosList():
 
 def getVideosDataFromYT(nextPageToken):
     #Setting YouTube API
-    api_key = "AIzaSyCYo9aXUh-cJTe2jbYiSQbgoxLey-Ac_2c"
-    api_service_name = "youtube"
-    api_version = "v3"
 
     client = build(api_service_name, api_version, developerKey=api_key)
 
@@ -91,9 +91,6 @@ def getVideosDataFromYT(nextPageToken):
 
 def getVideosStats(video_id):
     #Setting YouTube API
-    api_key = "AIzaSyCYo9aXUh-cJTe2jbYiSQbgoxLey-Ac_2c"
-    api_service_name = "youtube"
-    api_version = "v3"
 
     client = build(api_service_name, api_version, developerKey=api_key)
 
