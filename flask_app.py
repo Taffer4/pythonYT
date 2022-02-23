@@ -44,7 +44,7 @@ def GetVideosList():
             video_stats = getVideosStats(i['id']['videoId'])
             view_count.append(video_stats)
 
-    return render_template('test.html', len = len(titles), publushTime = dateUploaded, vid_titles = titles, viewCount = view_count)
+    return render_template('test.html', len = len(titles), vid_titles = titles, viewCount = view_count)
 
 def getVideosDataFromYT(nextPageToken):
     #Setting YouTube API
