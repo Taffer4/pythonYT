@@ -44,7 +44,7 @@ def GetVideosList():
             view_count.append(video_stats)
 
     for i in range(len(titles)):
-        v_and_n = VandN(datetime.today(), dateUploaded[i], titles[i], view_count[i])
+        v_and_n = vandn(datetime.today(), dateUploaded[i], titles[i], view_count[i])
         session.add(v_and_n)
         session.commit()
 
