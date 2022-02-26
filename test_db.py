@@ -7,7 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://Taffer:3kpSf42b@Taffer.mysql.py
 
 db = SQLAlchemy(app)
 
-class VandN(db.Model):
+class vandn(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_time = db.Column(db.DateTime)
     published_at = db.Column(db.String(100))
