@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Google API Variables
 scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
-api_key = "AIzaSyDReRsRej0OfdaOUOfq5z_PHvqqKepIDLU"
+api_key = "AIzaSyASLGLshTfMXlHoTKG9VpPg6esWJb-q15I"
 api_service_name = "youtube"
 api_version = "v3"
 
