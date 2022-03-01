@@ -21,8 +21,9 @@ def computeViewCount(last_videos, prev_videos):
     calculated_vc_dict_list = []
 
     #debug
-    print(last_videos)
-    
+    for index, row in last_videos.iterrows():
+        print(row['title'])
+
     for r in last_videos.index:
         if last_videos.at[r, 'title'] == prev_videos.at[r, 'title']:
             last_view_count.append(last_videos.at[r, 'view_count'])
