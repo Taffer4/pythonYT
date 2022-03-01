@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from sqlalchemy import create_engine, select, MetaData, Table, and_
 from sqlalchemy.orm import sessionmaker
 from operator import itemgetter
+import pandas as pd
 
 engine = create_engine('mysql://Taffer:3kpSf42b@Taffer.mysql.pythonanywhere-services.com/Taffer$competitors')
 metadata = MetaData(bind=None)
@@ -19,22 +20,21 @@ def computeViewCount(last_videos, prev_videos):
     calculated_vc = []
     calculated_vc_dict_list = []
 
-    for i in last_videos:
-        last_view_count.append(i.view_count)
-
-    for i in prev_videos:
-        prev_view_count.append(i.view_count)
+    for r in last_videos.index:
+        if last_videos.at[r, 'title'] == prev_videos.at[r, 'title']:
+            last_view_count.append(last_videos.at[r, 'view_count'])
+            prev_view_count.append(prev_videos.at[r, 'view_count'])
 
     calculated_vc = [x - y for x, y in zip(last_view_count, prev_view_count)]
-    for i in calculated_vc:
-        calculated_vc_dict_list.append({"VPH":i})
 
-    for i, j in zip (last_videos, calculated_vc_dict_list):
-        j.update({'publishedAt':i['published_at']})
-        j.update({'title':i['title']})
+    for i in calculated_vc:
+        calculated_vc_dict_list.append({"VPH": i})
+
+    for index_lv, row_lv in last_videos.iterrows():
+        calculated_vc_dict_list[index_lv].update({'publishedAt': row_lv['published_at']})
+        calculated_vc_dict_list[index_lv].update({'title': row_lv['title']})
 
     finished_list = sorted(calculated_vc_dict_list, key=itemgetter('VPH'), reverse=True)
-
 
     return finished_list
 
@@ -61,8 +61,8 @@ def getLastVideoDataFromDB():
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    results = session.execute(stmt).fetchall()
-    return results
+    df = pd.DataFrame(session.execute(stmt).fetchall())
+    return df
 
 def getPrevVideoDataFromDB():
     select_time_top = datetime.now() - timedelta(hours=1)
@@ -88,7 +88,7 @@ def getPrevVideoDataFromDB():
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    results = session.execute(stmt).fetchall()
-    return results
+    df = pd.DataFrame(session.execute(stmt).fetchall())
+    return df
 
 getSortedVideosListFromDB()
