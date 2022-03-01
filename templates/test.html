@@ -6,21 +6,28 @@
 
 <body>
 
-<table style="margin-left: 20px;">
-<!-- Table heades -->
-	<th>
-		<tr style="color: green; ">
-			<td>Video ID</td>
-			<td>Title</td>
+<table style="margin-left: 20px;" border="2px">
+<!-- Table headers -->
+	<thead>
+		<tr style="color: purple">
+			<th colspan="3">Vlad&Niki</th>
 		</tr>
-	</th>
+		<tr style="color: green; ">
+			<th>Дата</th>
+			<th>Название</th>
+			<th>VPH</th>
+		</tr>
+	</thead>
+	<tbody>
+		{%for i in range(0, 10)%}
+		<tr>
+			<td>{{published_at[i]}}</td>
+			<td align="center">{{vid_titles[i]}}</td>
+			<td>{{vph[i]}}</td>
+		</tr>
+		{%endfor%}
+	</tbody>
 </table>
-
-	<!-- For loop logic -->
-	{%for i in range(0, len)%}
-		<p>{{i}}Published At: {{published_at[i]}} Title: {{vid_titles[i]}} VPH: {{vph[i]}}</p>
-	{%endfor%}
-
 
 </body>
 </html>
